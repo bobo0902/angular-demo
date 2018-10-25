@@ -1,0 +1,119 @@
+<div class="management-box">
+  <div class="left">
+    <nz-tree [nzData]="nodes" nzShowLine="true" (nzClick)="nzEvent($event)">
+    </nz-tree>
+  </div>
+  <div class="right">
+    <div nz-row nzGutter="16" class="query-box">
+      <div nz-col class="gutter-row" nzSpan="6">
+        <input nz-input placeholder="档案号">
+      </div>
+      <div nz-col class="gutter-row" nzSpan="6">
+        <input nz-input placeholder="受理编号">
+      </div>
+      <div nz-col class="gutter-row" nzSpan="6">
+        <input nz-input placeholder="案卷标题">
+      </div>
+      <div nz-col class="gutter-row" nzSpan="6">
+        <div nz-row nzType="flex" nzJustify="space-around" nzAlign="middle">
+          <div nz-col nzSpan="8"><button nz-button nzType="primary">查询</button></div>
+          <div nz-col nzSpan="8"><button nz-button nzType="primary">重置</button></div>
+          <div nz-col nzSpan="8"><a (click)="moreQueryVisible=true">展开<i class="anticon anticon-left"></i></a></div>
+        </div>
+      </div>
+      <nz-drawer [nzClosable]="false" [nzVisible]="moreQueryVisible" [nzWidth]="450" nzTitle="更多查询条件" (nzOnClose)="moreQueryVisible=false">
+        <div nz-row nzGutter="8" nzAlign="middle">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>坐落</nz-form-label>
+              <nz-form-control>
+                <input nz-input>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>权利人</nz-form-label>
+              <nz-form-control>
+                <input nz-input>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row nzGutter="8" nzAlign="middle">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>证件号</nz-form-label>
+              <nz-form-control>
+                <input nz-input>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>归档单位</nz-form-label>
+              <nz-form-control>
+                <input nz-input>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row nzGutter="8" nzAlign="middle">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>不动产单元号</nz-form-label>
+              <nz-form-control>
+                <input nz-input>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </nz-drawer>
+    </div>
+    <div class="table-box" #tableBox>
+      <nz-table #nzTable nzSize="small" [nzData]="dataSet" nzShowSizeChanger nzPageSizeOptions [nzScroll]="tableScroll"
+        [nzLoadingDelay]=10 (nzCurrentPageDataChange)="currentPageDataChange($event)">
+        <thead>
+          <tr>
+            <th nzWidth="65px" nzLeft="0px" nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+            <th nzWidth="100px" nzLeft="65px">姓名</th>
+            <th nzWidth="100px" nzLeft="165px">年龄</th>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 4</th>
+            <th>Column 5</th>
+            <th>Column 6</th>
+            <th>Column 7</th>
+            <th>Column 8</th>
+            <th nzWidth="100px" nzRight="0px">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of nzTable.data">
+            <td nzLeft="0px" nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="nzCheckedChange(data)"></td>
+            <td nzLeft="65px">{{data.name}}</td>
+            <td nzLeft="165px">{{data.age}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.address}}</td>
+            <td nzRight="0px">
+              <a (click)="checkItem(data)">详情</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+  <!-- 弹框 -->
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="数据详情" [nzFooter]='null' (nzOnCancel)="isVisible=false">
+    <p>姓名:{{detail?.name}}</p>
+    <p>年龄:{{detail?.age}}</p>
+    <p>编号:{{detail?.address}}</p>
+  </nz-modal>
+</div>

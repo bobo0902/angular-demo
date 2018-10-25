@@ -1,0 +1,28 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+
+import { ManagementComponent } from './management/management.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
+import { FileManagementComponent } from './file-management.component';
+
+import { FileManagementRoutingModule } from './file-management-routing.module';
+
+import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { ConfigurationService } from './configuration/configuration.service';
+
+@NgModule({
+  imports: [
+    HttpClientModule,
+    CommonModule,
+    NgZorroAntdModule,
+    FileManagementRoutingModule
+  ],
+  declarations: [
+    FileManagementComponent,
+    ManagementComponent,
+    ConfigurationComponent
+  ],
+  // providers: [ConfigurationService]
+})
+export class FileManagementModule { }
