@@ -5,8 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { GLOBAL_FRAME_CONFIG } from '../config/navi-config';
 import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
-// import { ManagementComponent } from './file-management/management/management.component';
-// import { ConfigurationComponent } from './file-management/configuration/configuration.component';
 
 // interface RouterConfig {
 //   path: string;
@@ -22,12 +20,11 @@ import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, data: { title: '首页', shouldDetach: false } },
-  // { path: 'file-management/management', component: ManagementComponent, data: { title: '档案管理', shouldDetach: true } },
-  // { path: 'file-management/configuration', component: ConfigurationComponent, data: { title: '档案配置', shouldDetach: true } },
   {
     path: 'file-management', loadChildren: './file-management/file-management.module#FileManagementModule'
-    // data: { title: '档案管理', shouldDetach: true }
-    // data: { title: '档案管理', shouldDetach: true, preload: true }
+  },
+  {
+    path: 'inquire', loadChildren: './inquire/inquire.module#InquireModule'
   },
   { path: '**', redirectTo: 'home' }
 ];

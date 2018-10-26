@@ -21,8 +21,19 @@
   background: #fff;
   border-top: 1px solid #e8e8e8;
   border-right: 1px solid #e8e8e8;
-  color: #717171;
+  .trigger {
+    color: rgb(36, 35, 35);
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color .3s;
+    &:hover{
+      color: #1890ff;
+    }
+  }
 }
+
 
 //内容区样式
 .container {
@@ -40,7 +51,7 @@
     height: calc(~'100% - 40px');
     border: 1px solid #e8e8e8;
     border-top: none;
-    .query-box{
+    .query-box {
       width: calc(~'100% - 5px');
     }
   }

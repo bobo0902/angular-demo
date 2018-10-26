@@ -1,27 +1,33 @@
-let GLOBAL_FRAME_CONFIG = {
-  //logo: require('../theme/img/index/1.png'), //logo图片路径
+export const GLOBAL_FRAME_CONFIG = {
   systemName: '不动产登记信息汇交与监管系统',
   systemEnglishName: 'Real estate registration remittance supervision',
   navi: [{
     name: '首页',
-    class: 'icon-th-list',
+    class: 'home',
     path: '/home',
   }, {
     name: '档案管理',
+    class: 'book',
     path: '/file-management',
     children: [{
         name: '档案管理',
-        class: 'icon-th-list',
+        class: 'hdd',
         path: '/management'
       },
       {
         name: '档案配置',
-        class: 'icon-th-list',
+        class: 'setting',
         path: '/configuration'
       }
     ]
+  }, {
+    name: '查询',
+    class: 'search',
+    path: '/inquire',
+    children: [{
+      name: '综合查询',
+      class: 'search',
+      path: '/integrated-query'
+    }]
   }]
 };
-export {
-  GLOBAL_FRAME_CONFIG
-}

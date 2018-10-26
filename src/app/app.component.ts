@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { GLOBAL_FRAME_CONFIG } from '../config/navi-config';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -20,7 +20,10 @@ import { ReuseStrategyService } from './reuse-strategy';
   ]
 })
 export class AppComponent {
-
+  // 自定义收缩按钮
+  @ViewChild('trigger') customTrigger: TemplateRef<void>;
+  triggerTemplate = null;
+  // 默认展开
   isCollapsed: Boolean = false;
   navi: Array<{ title: string }> = [];
   tabs: Array<{ title: string, url: string }> = [];
@@ -84,5 +87,6 @@ export class AppComponent {
 
   ngOnInit() {
     this.navi = GLOBAL_FRAME_CONFIG.navi;
+    this.triggerTemplate = this.customTrigger;
   }
 }
