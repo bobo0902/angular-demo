@@ -1,11 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzFormatEmitEvent } from 'ng-zorro-antd';
 
+/**
+ * @interface 表格宽高
+ */
 interface TableScroll {
   x: string;
   y: string;
 }
 
+/**
+ * @interface 表格数据
+ */
 interface TableData {
   name: string;
   age: number;
