@@ -9,11 +9,10 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "target": "es6",
     "paths": {
       "@angular/*": ["./node_modules/@angular/*"],
-      "@static-resources*": ["../static-resources/src/app/gm/*"],
-      "@httpclient*": ["../static-resources/src/app/gm/plugins/httpclient/"]
+      "@static-resources*": ["../static-resources/src/app/gm/gm.module"]
     },
     "typeRoots": [
     ],

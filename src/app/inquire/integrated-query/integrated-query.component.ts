@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./integrated-query.component.css']
 })
 export class IntegratedQueryComponent implements OnInit {
-
+  moreQueryVisible = false;
   constructor() { }
 
   ngOnInit() {

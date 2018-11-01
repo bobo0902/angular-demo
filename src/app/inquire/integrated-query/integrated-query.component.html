@@ -1,3 +1,69 @@
-<p>
-  integrated-query works!
-</p>
+<div nz-row nzGutter="16" class="query-box">
+  <div nz-col class="gutter-row" nzSpan="5">
+    <input nz-input placeholder="业务号">
+  </div>
+  <div nz-col class="gutter-row" nzSpan="5">
+    <input nz-input placeholder="不动产单元号">
+  </div>
+  <div nz-col class="gutter-row" nzSpan="5">
+    <input nz-input placeholder="坐落">
+  </div>
+  <div nz-col class="gutter-row" nzSpan="5">
+    <input nz-input placeholder="不动产权证号">
+  </div>
+  <div nz-col class="gutter-row" nzSpan="4">
+    <div nz-row nzType="flex" nzJustify="space-around" nzAlign="middle">
+      <div nz-col nzSpan="9"><button nz-button nzType="primary">查询</button></div>
+      <div nz-col nzSpan="9"><button nz-button nzType="primary">重置</button></div>
+      <div nz-col nzSpan="6"><a (click)="moreQueryVisible=true">展开<i class="anticon anticon-left"></i></a></div>
+    </div>
+  </div>
+  <nz-drawer [nzClosable]="false" [nzVisible]="moreQueryVisible" [nzWidth]="450" nzTitle="更多查询条件" (nzOnClose)="moreQueryVisible=false">
+    <div nz-row nzGutter="8" nzAlign="middle">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>坐落</nz-form-label>
+          <nz-form-control>
+            <input nz-input>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>权利人</nz-form-label>
+          <nz-form-control>
+            <input nz-input>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="8" nzAlign="middle">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>证件号</nz-form-label>
+          <nz-form-control>
+            <input nz-input>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>归档单位</nz-form-label>
+          <nz-form-control>
+            <input nz-input>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="8" nzAlign="middle">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>不动产单元号</nz-form-label>
+          <nz-form-control>
+            <input nz-input>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </nz-drawer>
+</div>

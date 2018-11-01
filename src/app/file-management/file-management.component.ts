@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'file-management',
-  templateUrl: './file-management.component.html',
-  styleUrls: ['./file-management.component.css']
+  template: `<router-outlet></router-outlet>`
 })
 export class FileManagementComponent implements OnInit {
 
