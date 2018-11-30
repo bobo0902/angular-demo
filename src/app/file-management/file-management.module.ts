@@ -10,12 +10,14 @@ import { FileManagementRoutingModule } from './file-management-routing.module';
 
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ConfigurationService } from './configuration/configuration.service';
+import { SelectModule } from '@static-resources';
 
 @NgModule({
   imports: [
     HttpClientModule,
     CommonModule,
     NgZorroAntdModule,
+    SelectModule,
     FileManagementRoutingModule
   ],
   declarations: [

@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { ReuseStrategyService } from './reuse-strategy';
+import { Login } from './shared/login';
 
 @Component({
   selector: 'app-component',
@@ -20,6 +21,8 @@ import { ReuseStrategyService } from './reuse-strategy';
   ]
 })
 export class AppComponent {
+  // 登录
+  private login = new Login();
   // 自定义收缩按钮
   @ViewChild('trigger') customTrigger: TemplateRef<void>;
   triggerTemplate = null;
@@ -88,5 +91,7 @@ export class AppComponent {
   ngOnInit() {
     this.navi = GLOBAL_FRAME_CONFIG.navi;
     this.triggerTemplate = this.customTrigger;
+    // 临时登录
+    this.login.login();
   }
 }

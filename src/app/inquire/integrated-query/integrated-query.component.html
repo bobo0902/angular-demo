@@ -1,19 +1,19 @@
 <div nz-row nzGutter="16" class="query-box">
   <div nz-col class="gutter-row" nzSpan="5">
-    <input nz-input placeholder="业务号">
+    <input nz-input [(ngModel)]="formData.ywh" placeholder="业务号">
   </div>
   <div nz-col class="gutter-row" nzSpan="5">
-    <input nz-input placeholder="不动产单元号">
+    <input nz-input [(ngModel)]="formData.bdcdyh" placeholder="不动产单元号">
   </div>
   <div nz-col class="gutter-row" nzSpan="5">
-    <input nz-input placeholder="坐落">
+    <input nz-input [(ngModel)]="formData.zl" placeholder="坐落">
   </div>
   <div nz-col class="gutter-row" nzSpan="5">
-    <input nz-input placeholder="不动产权证号">
+    <input nz-input [(ngModel)]="formData.bdcqzh" placeholder="不动产权证号">
   </div>
   <div nz-col class="gutter-row" nzSpan="4">
     <div nz-row nzType="flex" nzJustify="space-around" nzAlign="middle">
-      <div nz-col nzSpan="9"><button nz-button nzType="primary">查询</button></div>
+      <div nz-col nzSpan="9"><button nz-button nzType="primary" (click)="getData()">查询</button></div>
       <div nz-col nzSpan="9"><button nz-button nzType="primary">重置</button></div>
       <div nz-col nzSpan="6"><a (click)="moreQueryVisible=true">展开<i class="anticon anticon-left"></i></a></div>
     </div>
@@ -22,17 +22,53 @@
     <div nz-row nzGutter="8" nzAlign="middle">
       <div nz-col nzSpan="12">
         <nz-form-item>
-          <nz-form-label>坐落</nz-form-label>
+          <nz-form-label>不动产类型</nz-form-label>
           <nz-form-control>
-            <input nz-input>
+            <gm-select [(ngModel)]="formData.bdclx" dicType="不动产类别" gmPlaceHolder="不动产类型" (ngModelChange)="change($event)"></gm-select>
           </nz-form-control>
         </nz-form-item>
       </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>登记大类</nz-form-label>
+          <nz-form-control>
+            <gm-select [(ngModel)]="formData.djdl" dicType="登记大类" gmPlaceHolder="登记大类"></gm-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="8" nzAlign="middle">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>登记起始时间</nz-form-label>
+          <nz-form-control>
+            <nz-date-picker [(ngModel)]="formData.djksrq" (ngModelChange)="formData.djksrq = formatDate(formData.djksrq)"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>登记结束时间</nz-form-label>
+          <nz-form-control>
+            <nz-date-picker [(ngModel)]="formData.djjsrq" (ngModelChange)="formData.djjsrq = formatDate(formData.djjsrq)"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="8" nzAlign="middle">
       <div nz-col nzSpan="12">
         <nz-form-item>
           <nz-form-label>权利人</nz-form-label>
           <nz-form-control>
-            <input nz-input>
+            <input nz-input [(ngModel)]="formData.qlr" placeholder="权利人">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>权利人证件号</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="formData.qlrzjh" placeholder="权利人证件号">
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -40,17 +76,17 @@
     <div nz-row nzGutter="8" nzAlign="middle">
       <div nz-col nzSpan="12">
         <nz-form-item>
-          <nz-form-label>证件号</nz-form-label>
+          <nz-form-label>义务人</nz-form-label>
           <nz-form-control>
-            <input nz-input>
+            <input nz-input [(ngModel)]="formData.ywr" placeholder="义务人">
           </nz-form-control>
         </nz-form-item>
       </div>
       <div nz-col nzSpan="12">
         <nz-form-item>
-          <nz-form-label>归档单位</nz-form-label>
+          <nz-form-label>义务人证件号</nz-form-label>
           <nz-form-control>
-            <input nz-input>
+            <input nz-input [(ngModel)]="formData.ywrzjh" placeholder="义务人证件号">
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -58,9 +94,9 @@
     <div nz-row nzGutter="8" nzAlign="middle">
       <div nz-col nzSpan="12">
         <nz-form-item>
-          <nz-form-label>不动产单元号</nz-form-label>
+          <nz-form-label>状态</nz-form-label>
           <nz-form-control>
-            <input nz-input>
+            <gm-select [(ngModel)]="formData.zt" dicType="建筑物状态" gmPlaceHolder="状态"></gm-select>
           </nz-form-control>
         </nz-form-item>
       </div>
