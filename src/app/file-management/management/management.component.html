@@ -1,12 +1,12 @@
 <div class="management-box">
   <div class="left">
-    <nz-tree [nzData]="nodes" nzShowLine="true" (nzClick)="nzEvent($event)">
+    <nz-tree [nzData]="nodes" nzShowLine="true" nzCheckable='true' (nzClick)="nzEvent($event)">
     </nz-tree>
   </div>
   <div class="right">
     <div nz-row nzGutter="16" class="query-box">
       <div nz-col class="gutter-row" nzSpan="6">
-        <gm-select dicType="界址线位置" gmPlaceHolder="界址线位置"></gm-select>
+        <gm-select dicType="登记类型" gmPlaceHolder="登记类型"></gm-select>
       </div>
       <div nz-col class="gutter-row" nzSpan="6">
         <input nz-input placeholder="受理编号">
