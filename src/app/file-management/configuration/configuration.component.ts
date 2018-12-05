@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from './configuration.service';
+import { GM } from '@static-resources';
 
 @Component({
   selector: 'configuration',
@@ -23,5 +24,6 @@ export class ConfigurationComponent implements OnInit {
     this.configurationService.getData({ 'bb': 1 }, {reportProgress: true}).subscribe(
       data => console.log(data)
     );
+    console.log(GM.get('userInfo'));
   }
 }
