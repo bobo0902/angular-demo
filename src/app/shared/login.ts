@@ -1,18 +1,21 @@
 import { ajax } from 'rxjs/ajax';
 import { map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { APP_KEY, LOGIN_SERVER, Cookie, UserRegions } from '@static-resources';
+import { APP_KEY, Cookie, RESTURL } from '@static-resources';
 
 export class Login {
   constructor() {
-
   }
+  private cookie = new Cookie();
+  /**
+   * @description 登录
+   * @method login
+   */
   login() {
-    let cookie = new Cookie();
-    let userInfo = new UserRegions();
     ajax({
-      url: `${LOGIN_SERVER}login?username=gss&password=As5RPtiDBTUGkv3OzPsQRg==&appKey=${APP_KEY}`,
-      responseType: 'json'
+      url: `${RESTURL.login}?username=gss&password=As5RPtiDBTUGkv3OzPsQRg==&appKey=${APP_KEY}`,
+      responseType: 'json',
+      async: false
     }).pipe(
       map(res => {
         if (!res.response) {
@@ -22,9 +25,34 @@ export class Login {
       }),
       catchError(err => of([]))
     ).subscribe(response => {
-      cookie.addCookie('clientServerToken', response.data.gmsso_ser_ec_key, (1 / 48));
-      cookie.addCookie('clientCliToken', response.data.gmsso_cli_ec_key, (1 / 48));
-      userInfo.getUser();
+      this.cookie.addCookie('clientServerToken', response.data.gmsso_ser_ec_key, (1 / 48));
+      this.cookie.addCookie('clientCliToken', response.data.gmsso_cli_ec_key, (1 / 48));
+    });
+  }
+  /**
+   * @description 验证令牌是否有效
+   * @method isTokenValid
+   */
+  isTokenValid(strToken) {
+    ajax({
+      url: `${RESTURL.checkTokenByAppKey}?token=${strToken}&appKey=${APP_KEY}`,
+      responseType: 'json',
+      async: false
+    }).pipe(
+      map(res => {
+        if (!res.response) {
+          throw new Error('Value expected!');
+        }
+        return res.response;
+      }),
+      catchError(err => of([]))
+    ).subscribe(response => {
+      if (response != null && response.tokenInvalid === false) {
+        // token可用
+        this.cookie.addCookie('clientServerToken', response.data.gmsso_ser_ec_key, (1 / 48));
+      } else {
+        this.login();
+      }
     });
   }
 }

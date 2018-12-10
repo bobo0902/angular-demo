@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { ReuseStrategyService } from './reuse-strategy';
 import { Login } from './shared/login';
+import { Cookie, UserRegions } from '@static-resources';
 
 @Component({
   selector: 'app-component',
@@ -21,8 +22,6 @@ import { Login } from './shared/login';
   ]
 })
 export class AppComponent {
-  // 登录
-  private login = new Login();
   // 自定义收缩按钮
   @ViewChild('trigger') customTrigger: TemplateRef<void>;
   triggerTemplate = null;
@@ -31,6 +30,11 @@ export class AppComponent {
   navi: Array<{ title: string }> = [];
   tabs: Array<{ title: string, url: string }> = [];
   tabActiveIndex: Number = 0;
+
+  // 登录
+  login = new Login();
+  cookie = new Cookie();
+  userInfo = new UserRegions();
 
   to(item) {
     // this.router.navigate([item.url]);
@@ -59,7 +63,7 @@ export class AppComponent {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private titleService: Title,
+    private titleService: Title
   ) {
     this.router.events
       .pipe(
@@ -87,11 +91,16 @@ export class AppComponent {
       });
   }
 
-
   ngOnInit() {
     this.navi = GLOBAL_FRAME_CONFIG.navi;
     this.triggerTemplate = this.customTrigger;
     // 临时登录
-    this.login.login();
+    let strToken = this.cookie.getCookie('clientCliToken');
+    if (strToken) {
+      this.login.isTokenValid(strToken);
+    } else {
+      this.login.login();
+    }
+    this.userInfo.getUser();
   }
 }

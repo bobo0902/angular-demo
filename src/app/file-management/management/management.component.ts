@@ -178,13 +178,13 @@ export class ManagementComponent implements OnInit {
         age: 30,
         address: `天耀宏图 no. ${i}`
       });
-      // 设置表格高度
-      let tableClientHeight = this.tableBox['nativeElement'].clientHeight - 100;
-      this.tableScroll = {
-        x: '1500px',
-        y: `${tableClientHeight}px`
-      };
     }
+    // 设置表格高度
+    let tableClientHeight = this.tableBox['nativeElement'].clientHeight - 100;
+    this.tableScroll = {
+      x: '1500px',
+      y: `${tableClientHeight}px`
+    };
   }
 
 }

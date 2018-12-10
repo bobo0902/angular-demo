@@ -1,6 +1,6 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
 import { format } from 'date-fns';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { IntegratedQueryService } from './integrated-query.service';
 
 interface Param {
   ywh?: string;
@@ -12,7 +12,7 @@ interface Param {
   djksrq?: string;
   djjsrq?: string;
   qlr?: string;
-  qlrzjh: string;
+  qlrzjh?: string;
   ywr?: string;
   ywrzjh?: string;
   zt?: string;
@@ -22,32 +22,50 @@ interface Param {
   selector: 'integrated-query',
   templateUrl: './integrated-query.component.html',
   styleUrls: ['./integrated-query.component.css'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => IntegratedQueryComponent),
-      multi: true
-    }]
+  providers: [IntegratedQueryService]
 })
 export class IntegratedQueryComponent implements OnInit {
   moreQueryVisible = false;
-  formData: Param;
-  constructor() { }
-/**
- * @method formatDate
- * @description 格式化时间
- * @param date 时间
- */
+  formData: Param = {};
+  constructor(
+    private integratedQueryService: IntegratedQueryService
+  ) { }
+  // 初始化
+  private dataSet = [];
+  private currentPageData: Array<object> = [];
+  /**
+   * @method formatDate
+   * @description 格式化时间
+   * @param date 时间
+   */
   public formatDate(date) {
     return format(date, 'YYYY-MM-DD');
   }
   change(val) {
     console.log(val);
   }
-  getData() {
+  private queryData() {
     console.log(this.formData);
+    this.integratedQueryService.queryData(this.formData).subscribe(
+      data => {
+        console.log(data);
+        this.dataSet = data.data.records;
+      }
+
+    );
+  }
+  getData() {
+    this.queryData();
+  }
+
+
+  // 当前页面展示数据改变的回调函数
+  currentPageDataChange($event: Array<object>): void {
+    this.currentPageData = [];
+    this.currentPageData = $event;
   }
   ngOnInit() {
+    this.queryData();
   }
 
 }

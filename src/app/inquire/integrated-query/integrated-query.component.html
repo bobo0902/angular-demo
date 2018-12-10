@@ -6,7 +6,7 @@
     <input nz-input [(ngModel)]="formData.bdcdyh" placeholder="不动产单元号">
   </div>
   <div nz-col class="gutter-row" nzSpan="5">
-    <input nz-input [(ngModel)]="formData.zl" placeholder="坐落">
+    <gm-tree-select [(ngModel)]="formData.zl" [config]="{key:'code'}" gmPlaceHolder="坐落"></gm-tree-select>
   </div>
   <div nz-col class="gutter-row" nzSpan="5">
     <input nz-input [(ngModel)]="formData.bdcqzh" placeholder="不动产权证号">
@@ -102,4 +102,43 @@
       </div>
     </div>
   </nz-drawer>
+</div>
+<div class="table-box" #tableBox>
+  <nz-table #nzTable nzSize="small" [nzData]="dataSet" nzShowSizeChanger="true" nzPageSizeOptions="true" [nzScroll]="tableScroll"
+    [nzLoadingDelay]=5 (nzCurrentPageDataChange)="currentPageDataChange($event)">
+    <thead>
+      <tr>
+        <th>业务号</th>
+        <th>单元名称</th>
+        <th>登记类型</th>
+        <th>自然资源登记单元号</th>
+        <th>所有权人</th>
+        <th>类型</th>
+        <th>总面积</th>
+        <th>单位</th>
+        <th>登记时间</th>
+        <th>坐落</th>
+        <th>状态</th>
+        <th nzWidth="100px" nzRight="0px">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of nzTable.data">
+        <td>{{data.ywh}}</td>
+        <td>{{data.zrzymc}}</td>
+        <td>{{data.djlx}}</td>
+        <td>{{data.zrzydjdyh}}</td>
+        <td>{{data.syqr}}</td>
+        <td>{{data.lx}}</td>
+        <td>{{data.zmj}}</td>
+        <td>{{data.dw}}</td>
+        <td>{{data.djsj}}</td>
+        <td>{{data.zl}}</td>
+        <td>{{data.qszt}}</td>
+        <td nzRight="0px">
+          <a (click)="checkItem(data)">详情</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
 </div>
