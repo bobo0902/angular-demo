@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef } from '@angular/core';
+import { Component, OnInit, forwardRef, ViewChild } from '@angular/core';
 import { format } from 'date-fns';
 import { IntegratedQueryService } from './integrated-query.service';
 
@@ -16,23 +16,36 @@ interface Param {
   ywr?: string;
   ywrzjh?: string;
   zt?: string;
+  current?: number;
 }
 
+/**
+ * @interface 表格宽高
+ */
+interface TableScroll {
+  x?: string;
+  y?: string;
+}
 @Component({
   selector: 'integrated-query',
   templateUrl: './integrated-query.component.html',
-  styleUrls: ['./integrated-query.component.css'],
+  styleUrls: ['./integrated-query.component.less'],
   providers: [IntegratedQueryService]
 })
 export class IntegratedQueryComponent implements OnInit {
+  // 初始化
+  @ViewChild('tableBox') tableBox: Element;
   moreQueryVisible = false;
-  formData: Param = {};
+
+  dataSet = [];
+  tableScroll: TableScroll;
+  formData: Param = { current: 1};
+  nzTotal: number;
+  pageSize = 10;
+  loading = true;
   constructor(
     private integratedQueryService: IntegratedQueryService
   ) { }
-  // 初始化
-  private dataSet = [];
-  private currentPageData: Array<object> = [];
   /**
    * @method formatDate
    * @description 格式化时间
@@ -41,31 +54,35 @@ export class IntegratedQueryComponent implements OnInit {
   public formatDate(date) {
     return format(date, 'YYYY-MM-DD');
   }
-  change(val) {
+  change(val): void {
     console.log(val);
   }
-  private queryData() {
+  private queryData(): void {
     console.log(this.formData);
+    this.loading = true;
     this.integratedQueryService.queryData(this.formData).subscribe(
       data => {
         console.log(data);
         this.dataSet = data.data.records;
+        this.loading = false;
+        this.nzTotal = data.data.total;
       }
 
     );
   }
-  getData() {
+  getData(): void {
     this.queryData();
   }
 
 
-  // 当前页面展示数据改变的回调函数
-  currentPageDataChange($event: Array<object>): void {
-    this.currentPageData = [];
-    this.currentPageData = $event;
-  }
   ngOnInit() {
     this.queryData();
+    // 设置表格高度
+    let tableClientHeight = this.tableBox['nativeElement'].clientHeight;
+    this.tableScroll = {
+      x: `1800px`,
+      y: `${tableClientHeight}px`
+    };
   }
 
 }

@@ -104,37 +104,38 @@
   </nz-drawer>
 </div>
 <div class="table-box" #tableBox>
-  <nz-table #nzTable nzSize="small" [nzData]="dataSet" nzShowSizeChanger="true" nzPageSizeOptions="true" [nzScroll]="tableScroll"
-    [nzLoadingDelay]=5 (nzCurrentPageDataChange)="currentPageDataChange($event)">
+  <nz-table #nzTable  nzSize="small"  [nzData]="dataSet" [nzScroll]="tableScroll" [nzLoading]="loading" [nzFrontPagination]="false" nzShowSizeChanger
+[nzTotal]="nzTotal" [(nzPageIndex)]="formData.current" [(nzPageSize)]="pageSize" [nzShowQuickJumper]=true
+(nzPageIndexChange)="queryData()">
     <thead>
       <tr>
-        <th>业务号</th>
-        <th>单元名称</th>
-        <th>登记类型</th>
-        <th>自然资源登记单元号</th>
-        <th>所有权人</th>
-        <th>类型</th>
-        <th>总面积</th>
-        <th>单位</th>
-        <th>登记时间</th>
-        <th>坐落</th>
-        <th>状态</th>
+        <th nzWidth="10%">业务号</th>
+        <th nzWidth="10%">单元名称</th>
+        <th nzWidth="6%">登记类型</th>
+        <th nzWidth="12%">自然资源登记单元号</th>
+        <th nzWidth="8%">所有权人</th>
+        <th nzWidth="6%">类型</th>
+        <th nzWidth="10%">总面积</th>
+        <th nzWidth="6%">单位</th>
+        <th nzWidth="10%">登记时间</th>
+        <th nzWidth="12%">坐落</th>
+        <th nzWidth="6%">状态</th>
         <th nzWidth="100px" nzRight="0px">操作</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let data of nzTable.data">
-        <td>{{data.ywh}}</td>
-        <td>{{data.zrzymc}}</td>
-        <td>{{data.djlx}}</td>
-        <td>{{data.zrzydjdyh}}</td>
-        <td>{{data.syqr}}</td>
-        <td>{{data.lx}}</td>
-        <td>{{data.zmj}}</td>
-        <td>{{data.dw}}</td>
-        <td>{{data.djsj}}</td>
-        <td>{{data.zl}}</td>
-        <td>{{data.qszt}}</td>
+        <td nzWidth="10%">{{data.ywh}}</td>
+        <td nzWidth="10%">{{data.zrzymc}}</td>
+        <td nzWidth="6%">{{data.djlx}}</td>
+        <td nzWidth="12%">{{data.zrzydjdyh}}</td>
+        <td nzWidth="8%">{{data.syqr}}</td>
+        <td nzWidth="6%">{{data.lx}}</td>
+        <td nzWidth="10%">{{data.zmj}}</td>
+        <td nzWidth="6%">{{data.dw}}</td>
+        <td nzWidth="10%">{{data.djsj}}</td>
+        <td nzWidth="12%">{{data.zl}}</td>
+        <td nzWidth="6%">{{data.qszt}}</td>
         <td nzRight="0px">
           <a (click)="checkItem(data)">详情</a>
         </td>
