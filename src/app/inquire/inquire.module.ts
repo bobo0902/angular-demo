@@ -6,7 +6,7 @@ import { InquireRoutingModule } from './inquire-routing.module';
 import { InquireComponent } from './inquire.component';
 import { IntegratedQueryComponent } from './integrated-query/integrated-query.component';
 import { FormsModule } from '@angular/forms';
-import { SelectModule, TreeSelectModule } from '@static-resources';
+import { SelectModule, TreeSelectModule, TransformDicPipe } from '@static-resources';
 
 @NgModule({
   imports: [
@@ -17,6 +17,6 @@ import { SelectModule, TreeSelectModule } from '@static-resources';
     TreeSelectModule,
     InquireRoutingModule
   ],
-  declarations: [InquireComponent, IntegratedQueryComponent]
+  declarations: [InquireComponent, IntegratedQueryComponent, TransformDicPipe]
 })
 export class InquireModule { }

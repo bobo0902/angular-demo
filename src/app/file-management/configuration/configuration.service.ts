@@ -11,6 +11,6 @@ export class ConfigurationService {
   private httpClientService = new HttpClientService(this.http);
   getData(gmParams?: object, options?: GmOptions): Observable<any> {
     return this.httpClientService
-      .getRequest('http://192.168.5.222:2022/estate-register-server/api/estateTask/getPendingPageList', gmParams, options);
+      .getRequest('http://192.168.5.35:8048/zrzy-register-server/api/queryRegistrationInfo/getComprehensivePageList', gmParams, options);
   }
 }

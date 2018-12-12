@@ -1,26 +1,27 @@
 <div nz-row nzGutter="16" class="query-box">
   <div nz-col class="gutter-row" nzSpan="5">
-    <input nz-input [(ngModel)]="formData.ywh" placeholder="业务号">
+    <input nz-input [(ngModel)]="formData.zrzydyh" placeholder="自然资源单元号">
   </div>
   <div nz-col class="gutter-row" nzSpan="5">
-    <input nz-input [(ngModel)]="formData.bdcdyh" placeholder="不动产单元号">
+    <input nz-input [(ngModel)]="formData.zrzymc" placeholder="单元名称">
   </div>
   <div nz-col class="gutter-row" nzSpan="5">
     <gm-tree-select [(ngModel)]="formData.zl" [config]="{key:'code'}" gmPlaceHolder="坐落"></gm-tree-select>
   </div>
   <div nz-col class="gutter-row" nzSpan="5">
-    <input nz-input [(ngModel)]="formData.bdcqzh" placeholder="不动产权证号">
+    <input nz-input [(ngModel)]="formData.ywh" placeholder="业务号">
   </div>
   <div nz-col class="gutter-row" nzSpan="4">
     <div nz-row nzType="flex" nzJustify="space-around" nzAlign="middle">
       <div nz-col nzSpan="9"><button nz-button nzType="primary" (click)="getData()">查询</button></div>
-      <div nz-col nzSpan="9"><button nz-button nzType="primary">重置</button></div>
-      <div nz-col nzSpan="6"><a (click)="moreQueryVisible=true">展开<i class="anticon anticon-left"></i></a></div>
+      <div nz-col nzSpan="9"><button nz-button nzType="primary" (click)="remove()">重置</button></div>
+      <div nz-col nzSpan="6"><a (click)="moreQueryVisible=true">展开<i nz-icon type="down" theme="outline"></i></a></div>
     </div>
   </div>
-  <nz-drawer [nzClosable]="false" [nzVisible]="moreQueryVisible" [nzWidth]="450" nzTitle="更多查询条件" (nzOnClose)="moreQueryVisible=false">
+  <nz-drawer nzPlacement="top" nzHeight="300" [nzClosable]="false" [nzVisible]="moreQueryVisible" nzTitle="更多查询条件"
+    (nzOnClose)="moreQueryVisible=false">
     <div nz-row nzGutter="8" nzAlign="middle">
-      <div nz-col nzSpan="12">
+      <div nz-col nzSpan="6">
         <nz-form-item>
           <nz-form-label>不动产类型</nz-form-label>
           <nz-form-control>
@@ -28,7 +29,7 @@
           </nz-form-control>
         </nz-form-item>
       </div>
-      <div nz-col nzSpan="12">
+      <div nz-col nzSpan="6">
         <nz-form-item>
           <nz-form-label>登记大类</nz-form-label>
           <nz-form-control>
@@ -36,63 +37,51 @@
           </nz-form-control>
         </nz-form-item>
       </div>
-    </div>
-    <div nz-row nzGutter="8" nzAlign="middle">
-      <div nz-col nzSpan="12">
+      <div nz-col nzSpan="6">
         <nz-form-item>
           <nz-form-label>登记起始时间</nz-form-label>
           <nz-form-control>
-            <nz-date-picker [(ngModel)]="formData.djksrq" (ngModelChange)="formData.djksrq = formatDate(formData.djksrq)"></nz-date-picker>
+            <nz-date-picker [(ngModel)]="formData.djsjStart" (ngModelChange)="formData.djsjStart = formatDate(formData.djsjStart)"
+              style="width:100%;"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </div>
-      <div nz-col nzSpan="12">
+      <div nz-col nzSpan="6">
         <nz-form-item>
           <nz-form-label>登记结束时间</nz-form-label>
           <nz-form-control>
-            <nz-date-picker [(ngModel)]="formData.djjsrq" (ngModelChange)="formData.djjsrq = formatDate(formData.djjsrq)"></nz-date-picker>
+            <nz-date-picker [(ngModel)]="formData.djsjEnd" (ngModelChange)="formData.djsjEnd = formatDate(formData.djsjEnd)"
+              style="width:100%;"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </div>
     </div>
     <div nz-row nzGutter="8" nzAlign="middle">
-      <div nz-col nzSpan="12">
+      <div nz-col nzSpan="6">
         <nz-form-item>
-          <nz-form-label>权利人</nz-form-label>
+          <nz-form-label>所有权人</nz-form-label>
           <nz-form-control>
-            <input nz-input [(ngModel)]="formData.qlr" placeholder="权利人">
+            <input nz-input [(ngModel)]="formData.syqr" placeholder="所有权人">
           </nz-form-control>
         </nz-form-item>
       </div>
-      <div nz-col nzSpan="12">
+      <div nz-col nzSpan="6">
         <nz-form-item>
-          <nz-form-label>权利人证件号</nz-form-label>
+          <nz-form-label>最小面积</nz-form-label>
           <nz-form-control>
-            <input nz-input [(ngModel)]="formData.qlrzjh" placeholder="权利人证件号">
+            <input nz-input [(ngModel)]="formData.areaStart" placeholder="最小面积">
           </nz-form-control>
         </nz-form-item>
       </div>
-    </div>
-    <div nz-row nzGutter="8" nzAlign="middle">
-      <div nz-col nzSpan="12">
+      <div nz-col nzSpan="6">
         <nz-form-item>
-          <nz-form-label>义务人</nz-form-label>
+          <nz-form-label>最大面积</nz-form-label>
           <nz-form-control>
-            <input nz-input [(ngModel)]="formData.ywr" placeholder="义务人">
+            <input nz-input [(ngModel)]="formData.areaEnd" placeholder="最大面积">
           </nz-form-control>
         </nz-form-item>
       </div>
-      <div nz-col nzSpan="12">
-        <nz-form-item>
-          <nz-form-label>义务人证件号</nz-form-label>
-          <nz-form-control>
-            <input nz-input [(ngModel)]="formData.ywrzjh" placeholder="义务人证件号">
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-    </div>
-    <div nz-row nzGutter="8" nzAlign="middle">
-      <div nz-col nzSpan="12">
+      <div nz-col nzSpan="6">
         <nz-form-item>
           <nz-form-label>状态</nz-form-label>
           <nz-form-control>
@@ -104,9 +93,9 @@
   </nz-drawer>
 </div>
 <div class="table-box" #tableBox>
-  <nz-table #nzTable  nzSize="small"  [nzData]="dataSet" [nzScroll]="tableScroll" [nzLoading]="loading" [nzFrontPagination]="false" nzShowSizeChanger
-[nzTotal]="nzTotal" [(nzPageIndex)]="formData.current" [(nzPageSize)]="pageSize" [nzShowQuickJumper]=true
-(nzPageIndexChange)="queryData()">
+  <nz-table #nzTable nzSize="middle" [nzData]="dataSet" [nzScroll]="tableScroll" [nzLoading]="loading"
+    [nzFrontPagination]="false" nzShowSizeChanger [nzTotal]="nzTotal" [(nzPageIndex)]="formData.current" [(nzPageSize)]="formData.size"
+    [nzShowQuickJumper]=true (nzPageIndexChange)="queryData()" (nzPageSizeChange)="queryData()">
     <thead>
       <tr>
         <th nzWidth="10%">业务号</th>
@@ -125,17 +114,17 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of nzTable.data">
-        <td nzWidth="10%">{{data.ywh}}</td>
-        <td nzWidth="10%">{{data.zrzymc}}</td>
-        <td nzWidth="6%">{{data.djlx}}</td>
-        <td nzWidth="12%">{{data.zrzydjdyh}}</td>
-        <td nzWidth="8%">{{data.syqr}}</td>
-        <td nzWidth="6%">{{data.lx}}</td>
-        <td nzWidth="10%">{{data.zmj}}</td>
-        <td nzWidth="6%">{{data.dw}}</td>
-        <td nzWidth="10%">{{data.djsj}}</td>
-        <td nzWidth="12%">{{data.zl}}</td>
-        <td nzWidth="6%">{{data.qszt}}</td>
+        <td>{{data.ywh}}</td>
+        <td>{{data.zrzymc}}</td>
+        <td>{{data.djlx | transformDic:'登记类型'}}</td>
+        <td>{{data.zrzydjdyh}}</td>
+        <td>{{data.syqr}}</td>
+        <td>{{data.lx | transformDic:'自然资源类型'}}</td>
+        <td>{{data.zmj}}</td>
+        <td>{{data.dw | transformDic:'单位'}}</td>
+        <td>{{data.djsj | date:'yyy-MM-dd'}}</td>
+        <td>{{data.zl}}</td>
+        <td>{{data.qszt | transformDic:'状态'}}</td>
         <td nzRight="0px">
           <a (click)="checkItem(data)">详情</a>
         </td>
@@ -143,3 +132,148 @@
     </tbody>
   </nz-table>
 </div>
+<nz-drawer [nzVisible]="detailsVisible" [nzWidth]="750" [nzClosable]="false" (nzOnClose)="detailsVisible=false">
+  <nz-tabset>
+    <nz-tab nzTitle="自然资源信息">
+      <p class="title">基本信息</p>
+      <div nz-row>
+        <div nz-col nzSpan="12">
+          <div class="item-wrap">
+            <p class="label">自然资源登记单元号:</p>{{detailsData?.zrzydjdyh}}
+          </div>
+        </div>
+        <div nz-col nzSpan="12">
+          <div class="item-wrap">
+            <p class="label">自然资源名称:</p>{{detailsData?.zrzymc}}
+          </div>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col nzSpan="12">
+          <div class="item-wrap">
+            <p class="label">所有权代表行使主体:</p>{{detailsData?.syqdbxszt}}
+          </div>
+        </div>
+        <div nz-col nzSpan="12">
+          <div class="item-wrap">
+            <p class="label">所有权人:</p>{{detailsData?.syqr}}
+          </div>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col nzSpan="24">
+          <div class="item-wrap">
+            <p class="label">所有权代表行使内容:</p>{{detailsData?.syqdbxsnr}}
+          </div>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col nzSpan="12">
+          <div class="item-wrap">
+            <p class="label">自然资源级别:</p>{{detailsData?.zrzyjb | transformDic:'自然资源级别'}}
+          </div>
+        </div>
+        <div nz-col nzSpan="12">
+          <div class="item-wrap">
+            <p class="label">区县代码:</p>{{detailsData?.qxdm}}
+          </div>
+        </div>
+      </div>
+
+      <p class="title">登记信息</p>
+      <div nz-row>
+        <div nz-col nzSpan="12">
+          <div class="item-wrap">
+            <p class="label">登簿人:</p>{{detailsData?.dbr}}
+          </div>
+        </div>
+      </div>
+      <p class="title">自然状况</p>
+      <div nz-row>
+        <div nz-col nzSpan="24">
+          <div class="item-wrap">
+            <p class="label">坐落:</p>{{detailsData?.zl}}
+          </div>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col nzSpan="12">
+          <div class="item-wrap">
+            <p class="label">总面积(m²):</p>{{detailsData?.zmj}}
+          </div>
+        </div>
+        <div nz-col nzSpan="12">
+          <div class="item-wrap">
+            <p class="label">总数量:</p>{{detailsData?.zsl}}
+          </div>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col nzSpan="24">
+          <nz-table #basicTable [nzData]="detailsDataSet" nzSize='small' nzShowPagination=false>
+            <thead>
+              <tr>
+                <th>类型</th>
+                <th>类别</th>
+                <th>面积(m²)</th>
+                <th>数量</th>
+                <th>质量</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of basicTable.data">
+                <td>{{data.lx | transformDic:'自然资源类型'}}</td>
+                <td>{{data.lb | transformDic:'自然资源类别'}}</td>
+                <td>{{data.mj}}</td>
+                <td>{{data.sl}}</td>
+                <td>{{data.zl}}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col nzSpan="24">
+          <div class="item-wrap">
+            <p class="label">空间坐标，位置说明或四至描述:</p>{{detailsData?.wzms}}
+          </div>
+        </div>
+      </div>
+
+      <p class="title">公共管制</p>
+      <div nz-row>
+        <div nz-col nzSpan="24">
+          <div class="item-wrap">
+            <p class="label">用途管制要求:</p>{{detailsData?.ytgzyq}}
+          </div>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col nzSpan="24">
+          <div class="item-wrap">
+            <p class="label">生态红线要求:</p>{{detailsData?.sthxyq}}
+          </div>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col nzSpan="24">
+          <div class="item-wrap">
+            <p class="label">特殊保护要求:</p>{{detailsData?.tsbhyq}}
+          </div>
+        </div>
+      </div>
+
+      <p class="title">备注</p>
+      <div nz-row>
+        <div nz-col nzSpan="24">
+          <div class="item-wrap">
+            <p class="label">备注:</p>{{detailsData?.bz}}
+          </div>
+        </div>
+      </div>
+    </nz-tab>
+    <nz-tab nzTitle="不动产权利相关信息">
+      Content of Tab Pane 2
+    </nz-tab>
+  </nz-tabset>
+</nz-drawer>

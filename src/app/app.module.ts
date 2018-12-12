@@ -15,8 +15,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 // 自定义通用模块引入
-// import { GmModule } from '../../../static-resources/src/app/gm/gm.module';
-
+// import { TransformDicPipe } from '@static-resources';
 
 registerLocaleData(zh);
 

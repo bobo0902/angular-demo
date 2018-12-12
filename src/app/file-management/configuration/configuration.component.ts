@@ -25,5 +25,6 @@ export class ConfigurationComponent implements OnInit {
       data => console.log(data)
     );
     console.log(GM.get('userInfo'));
+    console.log(GM.get('SysDicOper'));
   }
 }
