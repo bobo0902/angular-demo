@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientService, GmOptions, RESTURL } from '@static-resources';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class IntegratedQueryService {
 
   constructor(

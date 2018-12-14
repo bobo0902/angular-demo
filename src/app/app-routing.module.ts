@@ -3,19 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // component相关引用
 import { HomeComponent } from './home/home.component';
-import { GLOBAL_FRAME_CONFIG } from '../config/navi-config';
-import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
+import { SelectivePreloadingStrategy } from '@static-resources';
 
-// interface RouterConfig {
-//   path: string;
-//   component?: any;
-//   loadChildren?: string;
-// }
-
-// let routerLists: RouterConfig[];
-// for (const iterator of GLOBAL_FRAME_CONFIG) {
-//   console.log(iterator);
-// }
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

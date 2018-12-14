@@ -102,6 +102,7 @@ export class IntegratedQueryComponent implements OnInit {
    */
   checkItem(data: object) {
     console.log(data);
+    this.detailsDataSet = [];
     this.detailsData = data;
     this.integratedQueryService.getComprehensiveInfo({ id: data['id'] }).subscribe(
       response => {

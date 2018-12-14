@@ -21,8 +21,9 @@ export class ConfigurationComponent implements OnInit {
     );
   }
   getData() {
-    this.configurationService.getData({ 'bb': 1 }, {reportProgress: true}).subscribe(
-      data => console.log(data)
+    this.configurationService.getData({ 'bb': 1 }).subscribe(
+      data => console.log(data) ,
+      error => console.log(`获取数据失败,原因:${error.message}`)
     );
     console.log(GM.get('userInfo'));
     console.log(GM.get('SysDicOper'));
