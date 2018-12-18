@@ -6,7 +6,7 @@ import { GLOBAL_FRAME_CONFIG } from '../config/navi-config';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  config = [];
+  config;
   ngOnInit() {
     this.config = GLOBAL_FRAME_CONFIG;
   }

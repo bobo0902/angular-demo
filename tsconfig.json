@@ -13,7 +13,8 @@
     "paths": {
       "@angular/*": ["./node_modules/@angular/*"],
       "@static-resources": ["../static-resources/src/app/gm/gm.module"],
-      "gm-zorro-antd": ["./node_modules/ng-zorro-antd"]
+      "gm-zorro-antd": ["./node_modules/ng-zorro-antd"],
+      "url-config": ["./src/config/config"]
     },
     "typeRoots": [
     ],
