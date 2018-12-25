@@ -28,6 +28,10 @@ export const GLOBAL_FRAME_CONFIG = {
       name: '综合查询',
       class: 'search',
       path: '/integrated-query'
-    }]
+    }, {
+        name: '富文本编辑器',
+        class: 'edit',
+        path: '/form-tinymce'
+      }]
   }]
 };
