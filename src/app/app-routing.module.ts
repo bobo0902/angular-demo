@@ -13,7 +13,7 @@ const appRoutes: Routes = [
     path: 'file-management', loadChildren: './file-management/file-management.module#FileManagementModule'
   },
   {
-    path: 'inquire', loadChildren: './inquire/inquire.module#InquireModule'
+    path: 'inquire', loadChildren: './inquire/inquire.module#InquireModule', data: { preload: true }
   },
   { path: '**', redirectTo: 'home' }
 ];
