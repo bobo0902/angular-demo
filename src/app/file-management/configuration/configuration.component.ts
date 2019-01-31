@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from './configuration.service';
-import { GM } from '@static-resources';
+import { GM } from '@static-resources/api';
 
 @Component({
   selector: 'configuration',

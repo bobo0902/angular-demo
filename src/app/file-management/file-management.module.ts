@@ -9,8 +9,7 @@ import { FileManagementComponent } from './file-management.component';
 import { FileManagementRoutingModule } from './file-management-routing.module';
 
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { ConfigurationService } from './configuration/configuration.service';
-import { SelectModule, httpInterceptorProviders } from '@static-resources';
+import { SelectModule } from '@static-resources/api';
 
 @NgModule({
   imports: [
@@ -25,6 +24,5 @@ import { SelectModule, httpInterceptorProviders } from '@static-resources';
     ManagementComponent,
     ConfigurationComponent
   ],
-  // providers: [ConfigurationService]
 })
 export class FileManagementModule { }

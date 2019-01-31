@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from './shared/shared.module';
 
 import { NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
@@ -13,18 +12,18 @@ import { RouteReuseStrategy } from '@angular/router';
 
 
 // 自定义通用模块引入
-import { ReuseStrategyService, httpInterceptorProviders, Fram1Component } from '@static-resources';
+import { ReuseStrategyService, httpInterceptorProviders } from '@static-resources/api';
+import { GmModule } from '@static-resources/modules';
 
 registerLocaleData(zh);
 
 @NgModule({
   declarations: [
-    Fram1Component,
     AppComponent,
     HomeComponent
   ],
   imports: [
-    SharedModule,
+    GmModule,
     AppRoutingModule,
   ],
   providers: [

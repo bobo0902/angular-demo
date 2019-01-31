@@ -1,10 +1,32 @@
-.logo {
-  width: 120px;
-  height: 100%;
-  background: rgba(255, 255, 255, .2);
-  float: left;
-  color: #fff;
-  text-align: center;
+.ant-layout-header{
+  background: #5157a7;
+  .logo {
+    width: 120px;
+    height: 100%;
+    background: rgba(255, 255, 255, .2);
+    float: left;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .user {
+    float: right;
+    height: 100%;
+    overflow: hidden;
+    .user-name {
+      cursor: pointer;
+      padding: 0 12px;
+      display: inline-block;
+      transition: all .3s;
+      height: 100%;
+      color: #fff;
+      i {
+        margin: 0 8px;
+        font-size: 25px;
+        vertical-align: -7px;
+      }
+    }
+  }
 }
 
 .max-height {

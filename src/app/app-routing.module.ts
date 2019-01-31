@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // component相关引用
 import { HomeComponent } from './home/home.component';
-import { SelectivePreloadingStrategy } from '@static-resources';
+import { SelectivePreloadingStrategy } from '@static-resources/api';
 
 
 const appRoutes: Routes = [

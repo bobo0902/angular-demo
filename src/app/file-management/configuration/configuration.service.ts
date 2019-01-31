@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { HttpClientService, GmOptions } from '@static-resources';
+import { HttpClientService, GmOptions } from '@static-resources/api';
 
 @Injectable()
 export class ConfigurationService {

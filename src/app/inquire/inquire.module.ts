@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { FormsModule } from '@angular/forms';
-import { SelectModule, TreeSelectModule, TransformDicPipe } from '@static-resources';
+import { SelectModule, TreeSelectModule } from '@static-resources/api';
+import { TransformDicPipe } from '@static-resources/modules';
 import { InquireRoutingModule } from './inquire-routing.module';
-import { EditorModule } from '@tinymce/tinymce-angular';
+import { EditorModule } from 'my-app/node_modules/@tinymce/tinymce-angular';
 
 import { InquireComponent } from './inquire.component';
 import { IntegratedQueryComponent } from './integrated-query/integrated-query.component';

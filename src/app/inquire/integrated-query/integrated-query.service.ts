@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { HttpClientService, GmOptions } from '@static-resources';
-import { RESTURL } from 'src/config/rest-url';
+import { HttpClientService, GmOptions } from '@static-resources/api';
+import { RESTURL } from 'my-app/src/config/rest-url';
 
 @Injectable()
 export class IntegratedQueryService {
