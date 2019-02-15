@@ -5,8 +5,6 @@ import { of } from 'rxjs';
 import { environment } from '../environments/environment';
 
 let serverObj = {
-  UUMS_SERVER: `http://192.168.5.35:8058/uums-server/`,
-  LOGIN_SERVER: `http://192.168.5.35:8058/gm-sso-server/`,
   ZRZY_SERVER: `http://192.168.5.35:8048/zrzy-register-server/`
 };
 // 生产环境重置服务地址
@@ -34,8 +32,6 @@ if (environment.production) {
 }
 // 设置服务地址
 const APP_KEY = 'GM_NR';
-const UUMS_SERVER = serverObj['UUMS_SERVER'];
-const LOGIN_SERVER = serverObj['LOGIN_SERVER'];
 const ZRZY_SERVER = serverObj['ZRZY_SERVER'];
 
-export { UUMS_SERVER, LOGIN_SERVER, ZRZY_SERVER, APP_KEY };
+export { ZRZY_SERVER, APP_KEY };
